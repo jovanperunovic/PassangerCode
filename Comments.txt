@@ -1,0 +1,8 @@
+Action for sending email is commented, because I did't have proper email to deliver and test action
+Also al lists in application are hardcoded in order to focus on main functionality of app.
+In general, all list would have been implemented as tables and created CRUD services in order ADMIN to use them.
+
+DATABASE NOTE: !IMPORTANT
+	I worked on my local sqlserver.
+	In order to run my application it is necessary to change connection string.
+	I will provide sqlScript for database integration on another machine. If problems occurre, edit sql file.

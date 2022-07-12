@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "UserList";
+}
+
+<title> Use of JQuery to Add Edit Delete Table Row </title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<div class="container">
+    <h1>List of users in the plane</h1>
+    <br />
+    <fieldset>
+        <legend>
+            Passanger List
+        </legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>UserName</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Website</th>
+                </tr>
+            </thead>
+            <tbody id="tblbody">
+            </tbody>
+        </table>
+    </fieldset>
+</div>
+<script type="text/javascript">
+    //Load Data in Table when documents is ready
+    $(document).ready(function () {
+        BindpatientData();
+    });
+    function BindpatientData() {
+        $.ajax({
+            url: "https://jsonplaceholder.typicode.com/users",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result)
+            {
+                debugger;
+                if (result) {
+                    //itetrate thorugh each record and bind it to td
+                    var html = '';
+                    $.each(result, function (key, item) {
+                        var tablerow = '<tr>'
+                            + '<td>' + item.id + '</td>'
+                            + '<td>' + item.name + '</td>'
+                            + '<td>' + item.username + '</td>'
+                            + '<td>' + item.email + '</td>'
+                            + '<td>' + item.phone + '</td>'
+                            + '<td>' + item.website + '</td>'
+                            +'</tr>';
+                        $("#tblbody").append(tablerow);
+                    });
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>
